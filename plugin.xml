@@ -1,28 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-	id="cordova-plugin-device-settings"
+<?xml version="1.0" encoding="UTF-8"?><plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	id="cordova-open-device-settings"
 	version="1.0.0">
-	<name>DeviceSettings</name>
+
+	<name>Device settings</name>
 	<description>Device settings opener for Cordova</description>
 	<license>MIT</license>
-	<keywords>device-settings</keywords>
-	<repo>NA</repo>
-	<issue>NA</issue>
+
+	<engines>
+		<engine name="cordova" version=">=4.0.0" />
+	</engines>
 
 	<js-module src="www/settings.js" name="Settings">
-		<clobbers target="cordova.plugins.DeviceSettings" />
+		<clobbers target="cordova.plugins.settings" />
 	</js-module>
 
 	<!-- android -->
 	<platform name="android">
+		<source-file src="src/android/DeviceSettings.java" target-dir="src/com/phonegap/plugins/devicesettings" />
+
 		<config-file target="res/xml/config.xml" parent="/*">
 			<feature name="DeviceSettings">
 				<param name="android-package" value="com.phonegap.plugins.devicesettings.DeviceSettings" />
 			</feature>
 		</config-file>
-
-		<source-file src="src/android/DeviceSettings.java" target-dir="src/com/phonegap/plugins/devicesettings" />
 	</platform>
 
 	<!-- ios -->
@@ -31,18 +32,6 @@
 			<feature name="DeviceSettings">
 				<param name="ios-package" value="DeviceSettings"/>
 			</feature>
-		</config-file>
-		<config-file target="*-Info.plist" parent="CFBundleURLTypes">
-			<array>
-				<dict>
-					<key>CFBundleTypeRole</key>
-					<string>Editor</string>
-					<key>CFBundleURLSchemes</key>
-					<array>
-						<string>prefs</string>
-					</array>
-				</dict>
-			</array>
 		</config-file>
 
 		<header-file src="src/ios/DeviceSettings.h" />

@@ -1,9 +1,9 @@
 {
-  "name": "cordova-plugin-device-settings",
+  "name": "cordova-open-device-settings",
   "version": "1.0.0",
   "description": "Device settings opener for Cordova",
   "cordova": {
-    "id": "cordova-plugin-device-settings",
+    "id": "cordova-open-device-settings",
     "platforms": [
       "android",
       "ios"
@@ -19,16 +19,27 @@
     "cordova-android",
     "cordova-ios"
   ],
+  "engines": {
+    "cordovaDependencies": {
+      "1.5.0": {
+        "cordova": ">4.0.0"
+      }
+    }
+  },
   "author": "Vagish M M <vagish.m.meda@gmail.com>",
   "contributors": [
     {
-      "username": "Vagish M M"
+      "name": "Vagish M M",
+      "email": "vagish.m.meda@gmail.com",
+      "url": "https://github.com/vagishmm",
+      "username": "vagishmm"
     },
     {
-      "username": "Venkatesh Doddathimmaiah"
-    },    
+      "name": "Venkatesh Doddathimmaiah",
+      "username": "DVenkatesh"
+    },
     {
-      "username": "Md Fasi"
+      "name": "Md Fasi"
     }
   ],
   "license": "MIT",

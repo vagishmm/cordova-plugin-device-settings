@@ -17,6 +17,8 @@ import android.net.Uri;
 
 import android.provider.Settings;
 
+import android.os.Build;
+
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.PluginResult;
@@ -25,6 +27,7 @@ public class DeviceSettings extends CordovaPlugin {
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+		Context context=this.cordova.getActivity().getApplicationContext();
         PluginResult.Status status = PluginResult.Status.OK;
         Uri packageUri = Uri.parse("package:" + this.cordova.getActivity().getPackageName());
         String result = "";
@@ -36,7 +39,17 @@ public class DeviceSettings extends CordovaPlugin {
 		Intent intent = null;
 
         if (action.equals("settings")) {
-            intent = new Intent(android.provider.Settings.ACTION_FINGERPRINT_ENROLL);
+
+            intent = new Intent();
+            // Uncomment the below code when Cordova supports Android 30 / R
+			/*if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.R){
+                intent = new Intent(android.provider.Settings.ACTION_BIOMETRIC_ENROLL);
+            } else */ if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                intent = new Intent(android.provider.Settings.ACTION_FINGERPRINT_ENROLL);
+            } else {
+                // Atleast open the settings landing page
+                intent = new Intent(android.provider.Settings.ACTION_SETTINGS);
+            }
         } else {
              status = PluginResult.Status.INVALID_ACTION;
              callbackContext.sendPluginResult(new PluginResult(status, result));
